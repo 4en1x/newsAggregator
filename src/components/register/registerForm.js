@@ -5,45 +5,128 @@ import {
 	TextInput,
 	TouchableOpacity,
 	Text,
-	AlertIOS
+	AlertIOS,
+	ActivityIndicator
 } from 'react-native';
 
+import config from '../../../config.json';
+
 export default class Register extends Component {
+	constructor() {
+		super();
+		this.state = {
+			email: "",
+			password: "",
+			nickname: "",
+			repeatPassword: "",
+			error: "",
+			showProgress: false,
+		}
+	}
+
+	onPressEmailHint = () => {
+		AlertIOS.alert(
+			'Email hint',
+			'Should be a valid GMail email address',
+			[{text: 'Got It'}]
+		)
+	};
+
+	onPressPasswordHint = () => {
+		AlertIOS.alert(
+			'Password hint',
+			'Should contain more then 6 simbols',
+			[{text: 'Got It'}]
+		)
+	};
+
+	onPressNicknameHint = () => {
+		AlertIOS.alert(
+			'Nickname hint',
+			'Should be unique',
+			[{text: 'Got It'}]
+		)
+	};
+
+	onPressPasswordRepeatHint = () => {
+		AlertIOS.alert(
+			'Repeat Password hint',
+			'Please repeat your password',
+			[{text: 'Got It'}]
+		)
+	};
+
+	async onRegisterPressed() {
+		if(this.state.password !== this.state.repeatPassword) {
+			AlertIOS.alert(
+				'Error',
+				'Please check your password',
+				[{text: '😱'}]
+			);
+
+			return null;
+		}
+
+		this.setState({showProgress: true})
+		try {
+			let response = await fetch(`${config.web.backendOrigin}/users/register`, {
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					email: this.state.email,
+					password: this.state.password,
+					nickname: this.state.nickname,
+				})
+			});
+			let res = await response.text();
+
+			if (response.status === 409) {
+				AlertIOS.alert(
+					'Error',
+					JSON.parse(res).error,
+					[{text: 'OK'}]
+				);
+
+				this.setState({showProgress: false});
+				return null;
+			}
+
+			if (response.status === 200) {
+				AlertIOS.alert(
+					'Hello',
+					JSON.parse(res).nickname,
+					[{text: '😱'}]
+				);
+				this.setState({showProgress: false});
+				this.props.navigation.navigate('Home')
+			} else {
+				AlertIOS.alert(
+					'Error',
+					'Some error',
+					[{text: '😱'}]
+				);
+				throw res;
+			}
+		} catch(error) {
+			this.setState({error: error});
+			console.log("error " + error);
+			this.setState({showProgress: false});
+		}
+	}
+
 	render (){
-		const onPressEmailHint = () => {
-			AlertIOS.alert(
-				'Email hint',
-				'Should be a valid GMail email address',
-				[{text: 'Got It'}]
-			)
-		};
-
-		const onPressPasswordHint = () => {
-			AlertIOS.alert(
-				'Password hint',
-				'Should contain more then 6 simbols',
-				[{text: 'Got It'}]
-			)
-		};
-
-		const onPressNicknameHint = () => {
-			AlertIOS.alert(
-				'Nickname hint',
-				'Should be unique',
-				[{text: 'Got It'}]
-			)
-		};
-
-		const onPressPasswordRepeatHint = () => {
-			AlertIOS.alert(
-				'Repeat Password hint',
-				'Please repeat your password',
-				[{text: 'Got It'}]
-			)
-		};
-
 		return (
 			<View style={styles.container}>
+				<ActivityIndicator
+					animating={this.state.showProgress}
+					size="large"
+					color="#aa3300"
+					style={styles.loader}
+				/>
+
 				<View style={styles.inputContainer}>
 					<TextInput
 						style={styles.input}
@@ -51,6 +134,7 @@ export default class Register extends Component {
 						placeholderTextColor='rgba(255, 255, 255, 0.7)'
 						returnKeyType='next'
 						onSubmitEditing={() => {this.nicknameInput.focus()}}
+						onChangeText={ (text)=> this.setState({email: text}) }
 						keyboardType='email-address'
 						autoCapitalize='none'
 						autoCorrect={false}
@@ -58,7 +142,7 @@ export default class Register extends Component {
 
 					<TouchableOpacity
 						style={styles.hintContainer}
-						onPress={onPressEmailHint}
+						onPress={this.onPressEmailHint}
 					>
 						<Text style={styles.buttonText}>❔</Text>
 					</TouchableOpacity>
@@ -71,6 +155,7 @@ export default class Register extends Component {
 						placeholderTextColor='rgba(255, 255, 255, 0.7)'
 						returnKeyType='next'
 						onSubmitEditing={() => {this.passwordInput.focus()}}
+						onChangeText={ (text)=> this.setState({nickname: text}) }
 						ref={(input) => this.nicknameInput = input}
 						keyboardType='email-address'
 						autoCapitalize='none'
@@ -79,7 +164,7 @@ export default class Register extends Component {
 
 					<TouchableOpacity
 						style={styles.hintContainer}
-						onPress={onPressNicknameHint}
+						onPress={this.onPressNicknameHint}
 					>
 						<Text style={styles.buttonText}>❔</Text>
 					</TouchableOpacity>
@@ -94,11 +179,12 @@ export default class Register extends Component {
 						returnKeyType='go'
 						ref={(input) => this.passwordInput = input}
 						onSubmitEditing={() => {this.passwordRepeatInput.focus()}}
+						onChangeText={ (text)=> this.setState({password: text}) }
 					/>
 
 					<TouchableOpacity
 						style={styles.hintContainer}
-						onPress={onPressPasswordHint}
+						onPress={this.onPressPasswordHint}
 					>
 						<Text style={styles.buttonText}>❔</Text>
 					</TouchableOpacity>
@@ -112,17 +198,21 @@ export default class Register extends Component {
 						secureTextEntry
 						returnKeyType='go'
 						ref={(input) => this.passwordRepeatInput = input}
+						onChangeText={ (text)=> this.setState({repeatPassword: text}) }
 					/>
 
 					<TouchableOpacity
 						style={styles.hintContainer}
-						onPress={onPressPasswordRepeatHint}
+						onPress={this.onPressPasswordRepeatHint}
 					>
 						<Text style={styles.buttonText}>❔</Text>
 					</TouchableOpacity>
 				</View>
 
-				<TouchableOpacity style={styles.buttonContainer}>
+				<TouchableOpacity
+					style={styles.buttonContainer}
+					onPress={this.onRegisterPressed.bind(this)}
+				>
 					<Text style={styles.buttonText}>REGISTER</Text>
 				</TouchableOpacity>
 
@@ -168,5 +258,9 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		color: '#FFF',
 		fontWeight: '700',
+	},
+
+	loader: {
+		marginVertical: 20,
 	}
 });

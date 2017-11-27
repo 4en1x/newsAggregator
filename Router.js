@@ -1,9 +1,9 @@
-import {StackNavigator,} from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 import LogIn from './src/components/logIn/logIn'
-import Register from './src/components/logIn/register'
+import Register from './src/components/register/register'
+import Home from './src/components/home/home'
 
-
-export const Feed =StackNavigator({
+export const Feed = StackNavigator({
 	LogIn: {
 		screen: LogIn,
 		navigationOptions: {
@@ -14,6 +14,13 @@ export const Feed =StackNavigator({
 		screen: Register,
 		navigationOptions: {
 			title: 'Register Screen',
+		}
+	},
+	Home: {
+		screen: Home,
+		navigationOptions: {
+			title: 'Home Page',
+			headerLeft: null,
 		}
 	},
 });

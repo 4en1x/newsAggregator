@@ -21,7 +21,7 @@ export default class LogIn extends Component {
 				</View>
 
 				<View>
-					<RegisterForm/>
+					<RegisterForm navigation={this.props.navigation}/>
 				</View>
 			</KeyboardAvoidingView>
 		);
