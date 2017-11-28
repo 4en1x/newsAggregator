@@ -5,7 +5,7 @@ import {
 	TextInput,
 	TouchableOpacity,
 	Text,
-	AlertIOS,
+	Alert,
 	ActivityIndicator
 } from 'react-native';
 
@@ -25,7 +25,7 @@ export default class Register extends Component {
 	}
 
 	onPressEmailHint = () => {
-		AlertIOS.alert(
+		Alert.alert(
 			'Email hint',
 			'Should be a valid GMail email address',
 			[{text: 'Got It'}]
@@ -33,7 +33,7 @@ export default class Register extends Component {
 	};
 
 	onPressPasswordHint = () => {
-		AlertIOS.alert(
+		Alert.alert(
 			'Password hint',
 			'Should contain more then 6 simbols',
 			[{text: 'Got It'}]
@@ -41,7 +41,7 @@ export default class Register extends Component {
 	};
 
 	onPressNicknameHint = () => {
-		AlertIOS.alert(
+		Alert.alert(
 			'Nickname hint',
 			'Should be unique',
 			[{text: 'Got It'}]
@@ -49,7 +49,7 @@ export default class Register extends Component {
 	};
 
 	onPressPasswordRepeatHint = () => {
-		AlertIOS.alert(
+		Alert.alert(
 			'Repeat Password hint',
 			'Please repeat your password',
 			[{text: 'Got It'}]
@@ -58,7 +58,7 @@ export default class Register extends Component {
 
 	async onRegisterPressed() {
 		if(this.state.password !== this.state.repeatPassword) {
-			AlertIOS.alert(
+			Alert.alert(
 				'Error',
 				'Please check your password',
 				[{text: '😱'}]
@@ -84,7 +84,7 @@ export default class Register extends Component {
 			let res = await response.text();
 
 			if (response.status === 409) {
-				AlertIOS.alert(
+				Alert.alert(
 					'Error',
 					JSON.parse(res).error,
 					[{text: 'OK'}]
@@ -95,7 +95,7 @@ export default class Register extends Component {
 			}
 
 			if (response.status === 200) {
-				AlertIOS.alert(
+				Alert.alert(
 					'Hello',
 					JSON.parse(res).nickname,
 					[{text: '😱'}]
@@ -103,7 +103,7 @@ export default class Register extends Component {
 				this.setState({showProgress: false});
 				this.props.navigation.navigate('Home')
 			} else {
-				AlertIOS.alert(
+				Alert.alert(
 					'Error',
 					'Some error',
 					[{text: '😱'}]

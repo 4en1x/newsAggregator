@@ -1,5 +1,13 @@
 {
   "expo": {
-    "sdkVersion": "22.0.0"
+    "name": "Your App Name",
+    "version": "1.0.0",
+    "sdkVersion": "22.0.0",
+    "ios": {
+      "bundleIdentifier": "com.bsu.newsAggregator"
+    },
+    "android": {
+      "package": "com.bsu.newsAggregator"
+    }
   }
 }

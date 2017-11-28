@@ -5,7 +5,7 @@ import {
 	TextInput,
 	TouchableOpacity,
 	Text,
-	AlertIOS,
+	Alert,
 	ActivityIndicator
 } from 'react-native';
 
@@ -23,7 +23,7 @@ class loginForm extends Component {
 	}
 
 	onPressEmailHint = () => {
-		AlertIOS.alert(
+		Alert.alert(
 			'Email hint',
 			'Should be a valid GMail email address',
 			[{text: 'Got It'}]
@@ -31,7 +31,7 @@ class loginForm extends Component {
 	};
 
 	onPressPasswordHint = () => {
-		AlertIOS.alert(
+		Alert.alert(
 			'Password hint',
 			'Should contain more then 6 simbols',
 			[{text: 'Got It'}]
@@ -43,7 +43,7 @@ class loginForm extends Component {
 	};
 
 	onPressForgotButton = () => {
-		AlertIOS.alert(
+		Alert.alert(
 			'Ha-Ha',
 			'I\'m sorry, but there\'s nothing to be done',
 			[{text: '😱'}]
@@ -66,7 +66,7 @@ class loginForm extends Component {
 			});
 			let res = await response.text();
 			if (response.status === 200) {
-				AlertIOS.alert(
+				Alert.alert(
 					'Hello',
 					JSON.parse(res).nickname,
 					[{text: '😱'}]
@@ -74,7 +74,7 @@ class loginForm extends Component {
 				this.setState({showProgress: false});
 				this.props.navigation.navigate('Home')
 			} else {
-				AlertIOS.alert(
+				Alert.alert(
 					'Error',
 					'Invalid Email or Password',
 					[{text: '😱'}]
