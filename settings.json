@@ -1,0 +1,113 @@
+{
+  "en":{
+    "components":{
+      "login":{
+        "applicationName":"News Generator",
+        "registerButton":"Register",
+        "loginButton":"LOGIN",
+        "forgotPassword":"Forgot Password?",
+        "emailInput":"User Email",
+        "passwordInput":"Password",
+        "emailHint":{
+          "title":"Email hint",
+          "content":"Should be a valid GMail email address"
+        },
+        "passwordHint":{
+          "title":"Password hint",
+          "content":"Should contain more than 6 symbols"
+        },
+        "forgotPasswordButton":{
+          "title":"Ha-Ha",
+          "content":"I'm sorry, but there's nothing to be done"
+        },
+        "errorLoginMessage":{
+          "title":"Error",
+          "content":"Invalid Email or Password"
+        },
+        "gotItButton":"Got It",
+        "helloMessage":"Hello",
+        "settingsLabel": "Settings"
+      },
+      "modal":{
+        "closeButton":"Close"
+      },
+      "registration":{
+        "title":"Create New Account"
+      }
+    }
+  },
+  "ru":{
+    "components":{
+      "login":{
+        "applicationName":"Генератор Новостей",
+        "registerButton":"Регистрация",
+        "loginButton":"ВОЙТИ",
+        "forgotPassword":"Зыбыли пароль?",
+        "emailInput":"Почта",
+        "passwordInput":"Пароль",
+        "emailHint":{
+          "title":"Подсказка для почты",
+          "content":"Должен быть валидным почтовым адресом"
+        },
+        "passwordHint":{
+          "title":"Подсказка для пароля",
+          "content":"Должен содержать по крайней мере 6 символов"
+        },
+        "forgotPasswordButton":{
+          "title":"Ха-Ха",
+          "content":"Прости, но тут ничего нельзя поделать"
+        },
+        "errorLoginMessage":{
+          "title":"Ошибка",
+          "content":"Неправильный почтовый адрес или пароль"
+        },
+        "gotItButton":"Понял",
+        "helloMessage":"Привет",
+        "settingsLabel": "Настройки"
+      },
+      "modal":{
+        "closeButton":"Закрыть"
+      },
+      "registration":{
+        "title":"Создать новый аккаунт"
+      }
+    }
+  },
+  "sp":{
+    "components":{
+      "login":{
+        "applicationName":"Generador de noticias",
+        "registerButton":"Registro",
+        "loginButton":"LOGIN",
+        "forgotPassword":"¿Se te olvidó tu contraseña?",
+        "emailInput":"Email",
+        "passwordInput":"Contraseña",
+        "emailHint":{
+          "title":"Email pista",
+          "content":"Debe ser una dirección de correo electrónico válida de GMail"
+        },
+        "passwordHint":{
+          "title":"Pista de la contraseña",
+          "content":"Debe contener más de 6 símbolos"
+        },
+        "forgotPasswordButton":{
+          "title":"Ha-Ha",
+          "content":"Lo siento, pero no hay nada que hacer"
+        },
+        "errorLoginMessage":{
+          "title":"Error",
+          "content":"Correo electrónico o contraseña no válidos"
+        },
+        "gotItButton":"Lo tengo",
+        "helloMessage":"Hola",
+        "settingsLabel": "Configuraciones"
+      },
+      "modal":{
+        "closeButton":"Cerca"
+      },
+      "registration":{
+        "title":"Crear una nueva cuenta"
+      }
+    }
+  }
+}

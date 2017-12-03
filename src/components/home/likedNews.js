@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { FlatList, StyleSheet, ActivityIndicator  } from 'react-native';
+import { FlatList, StyleSheet, ActivityIndicator, View  } from 'react-native';
 
 import News from '../news/news.component';
 import config from '../../../config.json';
 
 
-
-export default class Home extends Component {
+export default class LikedNews extends Component {
 	constructor(props) {
+
 		super(props);
 		this.state = {
 			dataSource: [],
@@ -17,7 +17,6 @@ export default class Home extends Component {
 
 		this.loadAll(this.state.page);
 	}
-
 	loadAll(page) {
 		this.lodeNews(page).then(
 			result => {
@@ -33,6 +32,7 @@ export default class Home extends Component {
 				alert("Rejected: " + error.message)
 			})
 	}
+
 	async loadMore() {
 		try {
 			this.lodeNews(this.state.page).then(
@@ -53,7 +53,7 @@ export default class Home extends Component {
 	}
 	async lodeNews(page) {
 		try {
-			let response = await fetch(`${config.web.backendOrigin}/articles?domains=wsj.com,nytimes.com&`+'page='+page, {
+			let response = await fetch(`${config.web.backendOrigin}/articles/liked/${page}`, {
 				method: 'GET',
 				headers: {
 					'Accept': 'application/json',
@@ -66,10 +66,9 @@ export default class Home extends Component {
 				this.setState(function(prevState, props){
 					return {page: prevState.page+1}
 				});
-				console.log('yyyy')
+
 				return JSON.parse(res);
 			} else {
-
 				throw res;
 			}
 		} catch(error) {
@@ -86,11 +85,27 @@ export default class Home extends Component {
 
 	render() {
 		if (this.state.dataSource.length === 0) {
-			return <ActivityIndicator
-				size="large"
-				color="#aa3300"
-				style={styles.loader}
-			/>
+			return <View>
+				<ActivityIndicator
+					size="large"
+					color="#aa3300"
+					style={styles.loader}
+				/>
+				<FlatList
+					style={styles.container}
+					data={this.state.dataSource}
+					refreshing={this.state.refreshing}
+					renderItem={(rowData) =>
+						<News
+							rowData={rowData.item}
+							navigation={this.props.navigation}>
+						</News>
+					}
+					onEndReached={() => this.loadMore()}
+					onRefresh={() => this.handleRefresh()}
+				/>
+			</View>
+
 		}
 
 		return (

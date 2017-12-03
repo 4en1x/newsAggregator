@@ -10,42 +10,50 @@ import {
 } from 'react-native';
 
 import config from '../../../config.json';
+import l10n from '../../localization';
 
 class loginForm extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
+
 		this.state = {
 			email: "",
 			password: "",
 			error: "",
-			showProgress: false,
+			showProgress: false
 		}
 	}
 
 	onPressEmailHint = () => {
 		Alert.alert(
-			'Email hint',
-			'Should be a valid GMail email address',
-			[{text: 'Got It'}]
+			l10n("components.login.emailHint.title",this.props.lan),
+			l10n("components.login.emailHint.content",this.props.lan),
+			[{text: l10n("components.login.gotItButton",this.props.lan)}]
 		)
 	};
 
 	onPressPasswordHint = () => {
 		Alert.alert(
-			'Password hint',
-			'Should contain more then 6 simbols',
-			[{text: 'Got It'}]
+			l10n("components.login.passwordHint.title",this.props.lan),
+			l10n("components.login.passwordHint.content",this.props.lan),
+			[{text: l10n("components.login.gotItButton",this.props.lan)}]
 		)
 	};
 
 	onPressRegisterButton = () => {
-		this.props.navigation.navigate('Register')
+		this.props.navigation.navigate(
+			'Register',
+			{
+				lan:this.props.lan,
+				handleChangeLang: langValue => this.props.lan = langValue
+			}
+		)
 	};
 
 	onPressForgotButton = () => {
 		Alert.alert(
-			'Ha-Ha',
-			'I\'m sorry, but there\'s nothing to be done',
+			l10n("components.login.forgotPasswordButton.title",this.props.lan),
+			l10n("components.login.forgotPasswordButton.content",this.props.lan),
 			[{text: '😱'}]
 		)
 	};
@@ -67,16 +75,20 @@ class loginForm extends Component {
 			let res = await response.text();
 			if (response.status === 200) {
 				Alert.alert(
-					'Hello',
+					l10n("components.login.helloMessage",this.props.lan),
 					JSON.parse(res).nickname,
 					[{text: '😱'}]
 				);
 				this.setState({showProgress: false});
-				this.props.navigation.navigate('Home')
+				this.props.navigation.navigate(
+					'Home', {
+						navigation: this.props.navigation
+					},
+				);
 			} else {
 				Alert.alert(
-					'Error',
-					'Invalid Email or Password',
+					l10n("components.login.errorLoginMessage.title",this.props.lan),
+					l10n("components.login.errorLoginMessage.content",this.props.lan),
 					[{text: '😱'}]
 				);
 				throw res;
@@ -101,12 +113,10 @@ class loginForm extends Component {
 				<View style={styles.inputContainer}>
 					<TextInput
 						style={styles.input}
-						placeholder='User Email'
+						placeholder={l10n("components.login.emailInput",this.props.lan)}
 						placeholderTextColor='rgba(255, 255, 255, 0.7)'
 						returnKeyType='next'
-						onSubmitEditing={() => {
-							this.passwordInput.focus()
-						}}
+						onSubmitEditing={() => {this.passwordInput.focus()}}
 						onChangeText={ (text)=> this.setState({email: text}) }
 						keyboardType='email-address'
 						autoCapitalize='none'
@@ -124,7 +134,7 @@ class loginForm extends Component {
 				<View style={styles.inputContainer}>
 					<TextInput
 						style={styles.input}
-						placeholder='Password'
+						placeholder={l10n("components.login.passwordInput",this.props.lan)}
 						placeholderTextColor='rgba(255, 255, 255, 0.7)'
 						secureTextEntry
 						returnKeyType='go'
@@ -144,7 +154,9 @@ class loginForm extends Component {
 					style={styles.buttonContainer}
 					onPress={this.onLoginPressed.bind(this)}
 				>
-					<Text style={styles.buttonText}>LOGIN</Text>
+					<Text style={styles.buttonText}>
+						{l10n("components.login.loginButton",this.props.lan)}
+					</Text>
 				</TouchableOpacity>
 
 				<View style={styles.registrationContainer}>
@@ -152,14 +164,18 @@ class loginForm extends Component {
 						style={styles.registrationButtonContainer}
 						onPress={this.onPressRegisterButton}
 					>
-						<Text style={styles.buttonText}>Register</Text>
+						<Text style={styles.buttonText}>
+							{l10n("components.login.registerButton",this.props.lan)}
+						</Text>
 					</TouchableOpacity>
 
 					<TouchableOpacity
 						style={styles.registrationButtonContainer}
 						onPress={this.onPressForgotButton}
 					>
-						<Text style={styles.buttonText}>Forgot Password?</Text>
+						<Text style={styles.buttonText}>
+							{l10n("components.login.forgotPassword",this.props.lan)}
+						</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
