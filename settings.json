@@ -32,7 +32,48 @@
         "closeButton":"Close"
       },
       "registration":{
-        "title":"Create New Account"
+        "title":"Create New Account",
+        "emailInput":"User Email",
+        "nicknameInput":"Nickname",
+        "passwordInput":"Password",
+        "repeatPasswordInput":"Repeat password",
+        "registerButton":"REGISTER",
+        "gotItButton":"Got It",
+        "emailHint":{
+          "title":"Email hint",
+          "content":"Should be a valid GMail email address"
+        },
+        "passwordHint":{
+          "title":"Password hint",
+          "content":"Should contain more than 6 symbols"
+        },
+        "nicknameHint":{
+          "title":"Nickname hint",
+          "content":"Should be unique"
+        },
+        "repeatPasswordHint":{
+          "title":"Repeat password hint",
+          "content":"Please repeat your password"
+        },
+        "errorRegister":{
+          "password":{
+            "title":"Error",
+            "content":"Please check your password"
+          },
+          "nickname":{
+            "title":"Error",
+            "content":"Nickname already exists"
+          },
+          "email":{
+            "title":"Error",
+            "content":"Email already exists"
+          },
+          "server":{
+            "title":"Error",
+            "content":"Some error"
+          }
+        },
+        "helloMessage":"Hello"
       }
     }
   },
@@ -43,7 +84,7 @@
         "registerButton":"Регистрация",
         "loginButton":"ВОЙТИ",
         "forgotPassword":"Зыбыли пароль?",
-        "emailInput":"Почта",
+        "emailInput":"Почтовый адрес",
         "passwordInput":"Пароль",
         "emailHint":{
           "title":"Подсказка для почты",
@@ -69,7 +110,48 @@
         "closeButton":"Закрыть"
       },
       "registration":{
-        "title":"Создать новый аккаунт"
+        "title":"Создать новый аккаунт",
+        "emailInput":"Почтовый адрес",
+        "nicknameInput":"Ник",
+        "passwordInput":"Пароль",
+        "repeatPasswordInput":"Повторите пароль",
+        "registerButton":"РЕГИСТРАЦИЯ",
+        "gotItButton":"Понял",
+        "emailHint":{
+          "title":"Подсказка для почты",
+          "content":"Должен быть валидным почтовым адресом"
+        },
+        "passwordHint":{
+          "title":"Подсказка для пароля",
+          "content":"Должен содержать по крайней мере 6 символов"
+        },
+        "nicknameHint":{
+          "title":"Подсказка для ника",
+          "content":"Должен быть уникальным"
+        },
+        "repeatPasswordHint":{
+          "title":"Подсказка для повторения пароля",
+          "content":"Пожалуйста, повторите свой пароль"
+        },
+        "errorRegister":{
+          "password":{
+            "title":"Ошибка",
+            "content":"Пожалуйста проверьте свой пароль"
+          },
+          "nickname":{
+            "title":"Ошибка",
+            "content":"Ник уже существует"
+          },
+          "email":{
+            "title":"Ошибка",
+            "content":"Почтовый адрес уже существует"
+          },
+          "server":{
+            "title":"Ошибка",
+            "content":"Неизвестная ошибка"
+          }
+        },
+        "helloMessage":"Привет"
       }
     }
   },
@@ -106,7 +188,48 @@
         "closeButton":"Cerca"
       },
       "registration":{
-        "title":"Crear una nueva cuenta"
+        "title":"Crear una nueva cuenta",
+        "emailInput":"Email",
+        "nicknameInput":"Apodo",
+        "passwordInput":"Contraseña",
+        "repeatPasswordInput":"Repite la contraseña",
+        "registerButton":"REGISTRO",
+        "gotItButton":"Lo tengo",
+        "emailHint":{
+          "title":"Email pista",
+          "content":"Debe ser una dirección de correo electrónico válida de GMail"
+        },
+        "passwordHint":{
+          "title":"Pista de la contraseña",
+          "content":"Debe contener más de 6 símbolos"
+        },
+        "nicknameHint":{
+          "title":"Apodo de alias",
+          "content":"Debe ser único"
+        },
+        "repeatPasswordHint":{
+          "title":"Repita la sugerencia de contraseña",
+          "content":"Por favor repite tu contraseña"
+        },
+        "errorRegister":{
+          "password":{
+            "title":"Error",
+            "content":"Por favor revisa tu contraseña"
+          },
+          "nickname":{
+            "title":"Error",
+            "content":"El apodo ya existe"
+          },
+          "email":{
+            "title":"Error",
+            "content":"el Email ya existe"
+          },
+          "server":{
+            "title":"Error",
+            "content":"Algún error"
+          }
+        },
+        "helloMessage":"Hola"
       }
     }
   }

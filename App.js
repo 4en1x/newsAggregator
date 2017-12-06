@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Feed } from './Router'
+import { Feed } from './Router';
 
 export default class App extends Component {
-	render() {
-		return (
-			<Feed/>
-		);
-	}
+  render() {
+    return <Feed />;
+  }
 }

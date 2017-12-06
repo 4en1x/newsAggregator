@@ -1,18 +1,24 @@
 {
   "plugins": [
     "react",
-    "react-native"
+    "react-native",
+    "prettier"
   ],
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "airbnb",
+    "prettier",
+    "prettier/react"
   ],
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true,
       "modules": true
     },
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaVersion": 8
   },
   "env": {
     "react-native/react-native": true,
@@ -21,8 +27,7 @@
   },
   "rules": {
     "react-native/no-unused-styles": 2,
-    "react-native/split-platform-components": 2,
-    "react-native/no-inline-styles": 2,
-    "react-native/no-color-literals": 2
+    "prettier/prettier": ["error", { "singleQuote": true}],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }
