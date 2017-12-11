@@ -7,7 +7,7 @@ import {
   Picker,
   Modal
 } from 'react-native';
-import l10n from '../../localization';
+import l10n from '../../helpers/localization';
 
 export default class ChooseLanguageModal extends Component {
   constructor(props) {
