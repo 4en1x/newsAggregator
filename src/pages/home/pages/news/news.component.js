@@ -9,9 +9,8 @@ import {
 import Search from 'react-native-search-box';
 
 import News from '../../components/news/news.component';
-import config from '@/config/config.json';
-import styles from './news.styled';
-import l10n from '@/helpers/localization';
+import config from '~/config/config.json';
+import l10n from '~/helpers/localization';
 
 export default class Home extends Component {
   constructor(props) {
@@ -21,7 +20,8 @@ export default class Home extends Component {
       page: 1,
       refreshing: false,
       query: '',
-      lan: 'en'
+      lan: 'en',
+      networkError: false
     };
 
     this.loadAll(this.state.page);
@@ -50,6 +50,9 @@ export default class Home extends Component {
           dataSource: result,
           refreshing: false
         });
+
+        AsyncStorage.setItem('justUpdateConnection', 'false');
+        AsyncStorage.setItem('news', JSON.stringify(result));
       },
       error => {
         this.setState({
@@ -62,12 +65,18 @@ export default class Home extends Component {
 
   async loadMore() {
     try {
+      const isUpdate = await AsyncStorage.getItem('justUpdateConnection');
       this.lodeNews(this.state.page).then(
         result => {
-          result = this.state.dataSource.concat(result);
-          this.setState((prevState, props) => ({
-            dataSource: result
-          }));
+          if (isUpdate === 'true') {
+            this.handleRefresh();
+            return;
+          } else if (!this.state.networkError) {
+            result = this.state.dataSource.concat(result);
+          }
+
+          AsyncStorage.setItem('news', JSON.stringify(result));
+          this.setState({ dataSource: result });
         },
         error => alert(`Rejected: ${error.message}`)
       );
@@ -93,20 +102,27 @@ export default class Home extends Component {
       const res = await response.text();
 
       if (response.status === 200) {
-        this.setState(prevState => ({ page: prevState.page + 1 }));
+        this.setState(prevState => ({
+          page: prevState.page + 1,
+          networkError: false
+        }));
         return JSON.parse(res);
       }
 
       throw res;
     } catch (error) {
-      this.setState({ error });
-      console.log(`error ${error}`);
+      const data = await AsyncStorage.getItem('news');
+
+      if (data) {
+        this.setState({ networkError: true });
+        return JSON.parse(data);
+      }
     }
 
     return null;
   }
 
-  _handleRefresh() {
+  handleRefresh() {
     this.setState(
       {
         refreshing: true,
@@ -117,7 +133,7 @@ export default class Home extends Component {
     );
   }
 
-  _handleSearch(text) {
+  handleSearch(text) {
     this.setState(
       {
         refreshing: true,
@@ -129,8 +145,25 @@ export default class Home extends Component {
   }
 
   render() {
-    if (this.state.dataSource.length === 0 && this.state.query === '') {
-      return <ActivityIndicator size="large" color="#aa3300" />;
+    if (
+      (this.state.dataSource.length === 0 && this.state.query === '') ||
+      this.state.networkError === true
+    ) {
+      return (
+        <View>
+          <ActivityIndicator size="large" color="#aa3300" />
+          <FlatList
+            data={this.state.dataSource}
+            refreshing={this.state.refreshing}
+            renderItem={rowData => (
+              <News rowData={rowData.item} navigation={this.props.navigation} />
+            )}
+            onEndReached={() => this.loadMore()}
+            onRefresh={() => this.handleRefresh()}
+            keyExtractor={item => item.id}
+          />
+        </View>
+      );
     }
 
     if (this.state.dataSource.length === 0 && this.state.query !== '') {
@@ -138,7 +171,7 @@ export default class Home extends Component {
         <View>
           <Search
             backgroundColor="rgba(0, 0, 0, 0.1)"
-            onSearch={text => this._handleSearch(text)}
+            onSearch={text => this.handleSearch(text)}
             ref="search_box"
           />
           <Text>{l10n('components.news.searchError', this.state.lan)}</Text>
@@ -150,7 +183,7 @@ export default class Home extends Component {
       <View>
         <Search
           backgroundColor="rgba(0, 0, 0, 0.1)"
-          onSearch={text => this._handleSearch(text)}
+          onSearch={text => this.handleSearch(text)}
           ref="search_box"
         />
         <FlatList
@@ -160,7 +193,7 @@ export default class Home extends Component {
             <News rowData={rowData.item} navigation={this.props.navigation} />
           )}
           onEndReached={() => this.loadMore()}
-          onRefresh={() => this._handleRefresh()}
+          onRefresh={() => this.handleRefresh()}
           keyExtractor={item => item.id}
         />
       </View>

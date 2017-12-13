@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import RegisterForm from './components/registerForm.component';
 import l10n from '../../helpers/localization';
-import ChooseLanguageModal from '@/components/Modal/chooseLanguageModal.component';
+import ChooseLanguageModal from '~/components/Modal/chooseLanguageModal.component';
 import styles from './register.styled';
 
 export default class Register extends Component {
@@ -54,7 +54,7 @@ export default class Register extends Component {
         <View style={styles.logoContainer}>
           <Image
             style={styles.logo}
-            source={require('../../images/cthulhu.png')}
+            source={require('~/images/cthulhu.png')}
           />
           <Text style={styles.title}>
             {l10n('components.registration.title', this.state.lan)}

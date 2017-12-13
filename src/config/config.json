@@ -1,6 +1,7 @@
 {
   "web": {
     "port": 8080,
-    "backendOrigin": "http://whispering-earth-48025.herokuapp.com"
+    "backendOrigin": "http://whispering-earth-48025.herokuapp.com",
+    "backendOriginCopy": "http://whispering-earth-48025.herokuapp.com"
   }
 }

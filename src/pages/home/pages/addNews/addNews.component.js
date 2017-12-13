@@ -7,7 +7,7 @@ import {
   AsyncStorage
 } from 'react-native';
 import styles from './addNews.styled';
-import l10n from '@/helpers/localization';
+import l10n from '~/helpers/localization';
 
 export default class addNews extends Component {
   constructor(props) {

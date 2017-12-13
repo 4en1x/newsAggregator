@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Image } from 'react-native';
 
-import config from '@/config/config.json';
+import config from '~/config/config.json';
 
 export default class LikeButton extends Component {
   constructor(props) {
@@ -45,8 +45,8 @@ export default class LikeButton extends Component {
   }
 
   render() {
-    const iconFull = require('@/images/Heart_full.png');
-    const iconEmpty = require('@/images/Heart_empty.png');
+    const iconFull = require('~/images/Heart_full.png');
+    const iconEmpty = require('~/images/Heart_empty.png');
 
     if (this.state.liked) {
       return (

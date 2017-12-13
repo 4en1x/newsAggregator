@@ -3,14 +3,14 @@ import { Image, AsyncStorage } from 'react-native';
 
 import AddNews from '../../../pages/addNews/addNews.component';
 import styles from './addNewsScreen.styled';
-import l10n from '@/helpers/localization';
+import l10n from '~/helpers/localization';
 
 class AddNewsScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     tabBarLabel: l10n('navigation.tabs.addNews', navigation.state.params.lan),
     tabBarIcon: ({ tintColor }) => (
       <Image
-        source={require('@/images/plus-sign.png')}
+        source={require('~/images/plus-sign.png')}
         style={[styles.icon, { tintColor }]}
       />
     )

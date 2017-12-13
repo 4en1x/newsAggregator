@@ -8,9 +8,9 @@ import {
   AsyncStorage
 } from 'react-native';
 
-import config from '@/config/config.json';
+import config from '~/config/config.json';
 import styles from './swipeContainer.styled';
-import l10n from '@/helpers/localization';
+import l10n from '~/helpers/localization';
 
 export default class SwipeContainer extends Component {
   constructor(props) {
@@ -81,7 +81,7 @@ export default class SwipeContainer extends Component {
       <View style={styles.swipeContainer}>
         <TouchableOpacity style={styles.swipeButtonContainer}>
           <Image
-            source={require('@/images/spanner.png')}
+            source={require('~/images/spanner.png')}
             style={[styles.icon, { tintColor: '#76e943' }]}
           />
           <Text style={styles.swipeButtonText}>
@@ -93,7 +93,7 @@ export default class SwipeContainer extends Component {
           onPress={() => this.handleDeleteNews()}
         >
           <Image
-            source={require('@/images/cross.png')}
+            source={require('~/images/cross.png')}
             style={[styles.icon, { tintColor: '#e91e63' }]}
           />
           <Text style={styles.swipeButtonText}>

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { FlatList, StyleSheet, ActivityIndicator, View } from 'react-native';
+import { FlatList, ActivityIndicator, View, AsyncStorage } from 'react-native';
 
 import News from '../../components/news/news.component';
-import config from '@/config/config.json';
-import styles from './likedNews.styled';
+import config from '~/config/config.json';
 
 export default class LikedNews extends Component {
   constructor(props) {
@@ -11,7 +10,8 @@ export default class LikedNews extends Component {
     this.state = {
       dataSource: [],
       page: 1,
-      refreshing: false
+      refreshing: false,
+      networkError: false
     };
 
     this.loadAll(this.state.page);
@@ -24,11 +24,11 @@ export default class LikedNews extends Component {
           dataSource: result,
           refreshing: false
         });
+
+        AsyncStorage.setItem('justUpdateConnection', 'false');
+        AsyncStorage.setItem('likedNews', JSON.stringify(result));
       },
       error => {
-        this.setState({
-          refreshing: false
-        });
         alert(`Rejected: ${error.message}`);
       }
     );
@@ -36,12 +36,18 @@ export default class LikedNews extends Component {
 
   async loadMore() {
     try {
+      const isUpdate = await AsyncStorage.getItem('justUpdateConnection');
       this.lodeNews(this.state.page).then(
         result => {
-          result = this.state.dataSource.concat(result);
-          this.setState((prevState, props) => ({
-            dataSource: result
-          }));
+          if (isUpdate === 'true') {
+            this.handleRefresh();
+            return;
+          } else if (!this.state.networkError) {
+            result = this.state.dataSource.concat(result);
+          }
+
+          AsyncStorage.setItem('likedNews', JSON.stringify(result));
+          this.setState({ dataSource: result });
         },
         error => alert(`Rejected: ${error.message}`)
       );
@@ -66,14 +72,21 @@ export default class LikedNews extends Component {
       const res = await response.text();
 
       if (response.status === 200) {
-        this.setState((prevState, props) => ({ page: prevState.page + 1 }));
-
+        this.setState(prevState => ({
+          page: prevState.page + 1,
+          networkError: false
+        }));
         return JSON.parse(res);
       }
+
       throw res;
     } catch (error) {
-      this.setState({ error });
-      console.log(`error ${error}`);
+      const data = await AsyncStorage.getItem('likedNews');
+
+      if (data) {
+        this.setState({ networkError: true });
+        return JSON.parse(data);
+      }
     }
 
     return null;
@@ -90,12 +103,14 @@ export default class LikedNews extends Component {
   }
 
   render() {
-    if (this.state.dataSource.length === 0) {
+    if (
+      this.state.dataSource.length === 0 ||
+      this.state.networkError === true
+    ) {
       return (
         <View>
           <ActivityIndicator size="large" color="#aa3300" />
           <FlatList
-            style={styles.container}
             data={this.state.dataSource}
             refreshing={this.state.refreshing}
             renderItem={rowData => (
@@ -103,6 +118,7 @@ export default class LikedNews extends Component {
             )}
             onEndReached={() => this.loadMore()}
             onRefresh={() => this.handleRefresh()}
+            keyExtractor={item => item.id}
           />
         </View>
       );
@@ -110,7 +126,6 @@ export default class LikedNews extends Component {
 
     return (
       <FlatList
-        style={styles.container}
         data={this.state.dataSource}
         refreshing={this.state.refreshing}
         renderItem={rowData => (

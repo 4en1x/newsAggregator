@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
 
-import LogIn from '@/pages/logIn/logIn.component';
-import Register from '@/pages/registration/register.component';
-import SingleNews from '@/pages/home/components/singleNews/singleNews.component';
-import HomeNav from '@/pages/home/navigation/homeNav';
-import LikeButton from '@/pages/home/components/likeButton/likeButton.component';
+import LogIn from '~/pages/logIn/logIn.component';
+import Register from '~/pages/registration/register.component';
+import SingleNews from '~/pages/home/components/singleNews/singleNews.component';
+import HomeNav from '~/pages/home/navigation/homeNav';
+import LikeButton from '~/pages/home/components/likeButton/likeButton.component';
 
 class SingleNewsScreen extends Component {
   static navigationOptions = ({ navigation }) => ({

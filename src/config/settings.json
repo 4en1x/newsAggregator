@@ -95,7 +95,9 @@
         "dtPicker":"Date + time picker"
       },
       "settings":{
-        "title":"Settings"
+        "title":"Settings",
+        "disconnect":"Disconnect from Server",
+        "connect":"Connect to Server"
       },
       "news":{
         "dPrefix":"d",
@@ -211,7 +213,9 @@
         "dtPicker":"Выбор даты + времени"
       },
       "settings":{
-        "title":"Настройки"
+        "title":"Настройки",
+        "disconnect":"Сломать сервер",
+        "connect":"Починить сервер"
       },
       "news":{
         "dPrefix":"д",
@@ -327,7 +331,9 @@
         "dtPicker":"Selector de fecha y hora"
       },
       "settings":{
-        "title":"Configuraciones"
+        "title":"Configuraciones",
+        "disconnect":"Desconectarse del servidor",
+        "connect":"Conectar al servidor"
       },
       "news":{
         "dPrefix":"d",
@@ -344,6 +350,242 @@
       },
       "pages":{
         "home": "Página de inicio"
+      }
+    }
+  },
+  "de":{
+    "components":{
+      "login":{
+        "applicationName":"Nachrichtengenerator",
+        "registerButton":"Registrieren",
+        "loginButton":"ANMELDUNG",
+        "forgotPassword":"Passwort vergessen?",
+        "emailInput":"Benutzer Email",
+        "passwordInput":"Passwort",
+        "emailHint":{
+          "title":"E-Mail-Hinweis",
+          "content":"Sollte eine gültige E-Mail-Adresse von Google Mail sein"
+        },
+        "passwordHint":{
+          "title":"Passwort Hinweis",
+          "content":"Sollte mehr als 6 Symbole enthalten"
+        },
+        "forgotPasswordButton":{
+          "title":"Ha-Ha",
+          "content":"Es tut mir leid, aber es gibt nichts zu tun"
+        },
+        "errorLoginMessage":{
+          "title":"Error",
+          "content":"Ungültige E-Mail oder Passwort"
+        },
+        "gotItButton":"Ich habs",
+        "helloMessage":"Hallo",
+        "settingsLabel": "die Einstellungen"
+      },
+      "modal":{
+        "closeButton":"Schließen"
+      },
+      "registration":{
+        "title":"Neuen Account erstellen",
+        "emailInput":"Benutzer Email",
+        "nicknameInput":"Spitzname",
+        "passwordInput":"Passwort",
+        "repeatPasswordInput":"Passwort wiederholen",
+        "registerButton":"REGISTRIEREN",
+        "gotItButton":"Got It",
+        "emailHint":{
+          "title":"Ich habs",
+          "content":"Sollte eine gültige E-Mail-Adresse von Google Mail sein"
+        },
+        "passwordHint":{
+          "title":"Passwort Hinweis",
+          "content":"Sollte mehr als 6 Symbole enthalten"
+        },
+        "nicknameHint":{
+          "title":"Spitznamen Hinweis",
+          "content":"Sollte einzigartig sein"
+        },
+        "repeatPasswordHint":{
+          "title":"Wiederholen Sie den Passworthinweis",
+          "content":"Bitte wiederholen Sie Ihr Passwort"
+        },
+        "errorRegister":{
+          "password":{
+            "title":"Error",
+            "content":"Bitte überprüfen Sie Ihr Passwort"
+          },
+          "nickname":{
+            "title":"Error",
+            "content":"Nickname existiert schon"
+          },
+          "email":{
+            "title":"Error",
+            "content":"E-Mail existiert bereits"
+          },
+          "server":{
+            "title":"Error",
+            "content":"Ein Fehler"
+          }
+        },
+        "helloMessage":"Hallo"
+      },
+      "swipeContainer":{
+        "deleteAlert":{
+          "title":"Bestätigung",
+          "description": "Sind Sie sicher, dass Sie diese Nachrichten löschen möchten?",
+          "cancelButton": "Stornieren",
+          "okButton": "OK"
+        },
+        "updateOption":"Neuigkeiten aktualisieren",
+        "deleteOption":"Nachrichten löschen"
+      },
+      "home":{
+        "searchTitle":"Suche"
+      },
+      "addNews":{
+        "title":"Titel",
+        "author":"Autor",
+        "dPicker":"Datumsauswahl",
+        "dtPicker":"Datum + Zeitauswahl"
+      },
+      "settings":{
+        "title":"Die Einstellungen",
+        "disconnect":"Trennen Sie vom Server",
+        "connect":"Verbinden zum Server"
+      },
+      "news":{
+        "dPrefix":"t",
+        "hPrefix":"d",
+        "searchError":"Versuchen Sie eine andere Suchanfrage"
+      }
+    },
+    "navigation":{
+      "tabs":{
+        "news":"Nachrichten",
+        "likedNews":"Zufrieden Nachrichten",
+        "settings":"Die Einstellungen",
+        "addNews":"Nachrichten hinzufügen"
+      },
+      "pages":{
+        "home": "Startseite"
+      }
+    }
+  },
+  "ch":{
+    "components":{
+      "login":{
+        "applicationName":"新聞發生器",
+        "registerButton":"寄存器",
+        "loginButton":"登錄",
+        "forgotPassword":"忘記密碼？",
+        "emailInput":"用戶電子郵件",
+        "passwordInput":"密碼",
+        "emailHint":{
+          "title":"電子郵件提示",
+          "content":"應該是一個有效的GMail電子郵件地址"
+        },
+        "passwordHint":{
+          "title":"密碼提示",
+          "content":"應該包含超過6個符號"
+        },
+        "forgotPasswordButton":{
+          "title":"哈哈",
+          "content":"我很抱歉，但沒有什麼可以做的"
+        },
+        "errorLoginMessage":{
+          "title":"錯誤",
+          "content":"無效的電子郵件或密碼"
+        },
+        "gotItButton":"得到它了",
+        "helloMessage":"你好",
+        "settingsLabel": "設置"
+      },
+      "modal":{
+        "closeButton":"關"
+      },
+      "registration":{
+        "title":"建立新帳戶",
+        "emailInput":"用戶電子郵件",
+        "nicknameInput":"暱稱",
+        "passwordInput":"密碼",
+        "repeatPasswordInput":"重複輸入密碼",
+        "registerButton":"寄存器",
+        "gotItButton":"得到它了",
+        "emailHint":{
+          "title":"電子郵件提示",
+          "content":"應該是一個有效的GMail電子郵件地址"
+        },
+        "passwordHint":{
+          "title":"密碼提示",
+          "content":"應該包含超過6個符號"
+        },
+        "nicknameHint":{
+          "title":"暱稱提示",
+          "content":"應該是唯一的"
+        },
+        "repeatPasswordHint":{
+          "title":"重複密碼提示",
+          "content":"請重複您的密碼"
+        },
+        "errorRegister":{
+          "password":{
+            "title":"錯誤",
+            "content":"請檢查您的密碼"
+          },
+          "nickname":{
+            "title":"錯誤",
+            "content":"暱稱已經存在"
+          },
+          "email":{
+            "title":"錯誤",
+            "content":"電子郵件已經存在"
+          },
+          "server":{
+            "title":"錯誤",
+            "content":"有些錯誤"
+          }
+        },
+        "helloMessage":"你好"
+      },
+      "swipeContainer":{
+        "deleteAlert":{
+          "title":"確認",
+          "description": "你確定要刪除這個消息嗎？",
+          "cancelButton": "取消",
+          "okButton": "好"
+        },
+        "updateOption":"更新消息",
+        "deleteOption":"刪除新聞"
+      },
+      "home":{
+        "searchTitle":"搜索"
+      },
+      "addNews":{
+        "title":"標題",
+        "author":"作者",
+        "dPicker":"日期選擇器",
+        "dtPicker":"日期+時間選擇器"
+      },
+      "settings":{
+        "title":"設置",
+        "disconnect":"從服務器斷開連接",
+        "connect":"連接到服務器"
+      },
+      "news":{
+        "dPrefix":"日期",
+        "hPrefix":"小時",
+        "searchError":"嘗試其他搜索查詢"
+      }
+    },
+    "navigation":{
+      "tabs":{
+        "news":"新聞",
+        "likedNews":"喜歡的新聞",
+        "settings":"設置",
+        "addNews":"添加新聞"
+      },
+      "pages":{
+        "home": "主頁"
       }
     }
   }

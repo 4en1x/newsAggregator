@@ -3,14 +3,14 @@ import { Image, AsyncStorage } from 'react-native';
 
 import LikedNews from '../../../pages/likedNews/likedNews.component';
 import styles from './likedNewsScreen.styled';
-import l10n from '@/helpers/localization';
+import l10n from '~/helpers/localization';
 
 class LikedNewsScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     tabBarLabel: l10n('navigation.tabs.likedNews', navigation.state.params.lan),
     tabBarIcon: ({ tintColor }) => (
       <Image
-        source={require('@/images/love.png')}
+        source={require('~/images/love.png')}
         style={[styles.icon, { tintColor }]}
       />
     )

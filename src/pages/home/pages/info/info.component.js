@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
-import { View, Picker, AsyncStorage, Text } from 'react-native';
+import {
+  View,
+  Picker,
+  AsyncStorage,
+  Text,
+  TouchableOpacity
+} from 'react-native';
 import styles from './info.styled';
-import l10n from '@/helpers/localization';
-import config from '@/config/config.json';
+import l10n from '~/helpers/localization';
+import config from '~/config/config.json';
 
 export default class Info extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lan: 'en'
+      lan: 'en',
+      connect: true
     };
   }
 
@@ -50,6 +57,21 @@ export default class Info extends Component {
     this.changeLang(lang);
   };
 
+  async disconnect() {
+    if (this.state.connect) {
+      config.web.backendOrigin = {};
+    } else {
+      config.web.backendOrigin = config.web.backendOriginCopy;
+      await AsyncStorage.setItem('justUpdateConnection', 'true');
+    }
+
+    this.setState(prevState => ({
+      connect: !prevState.connect
+    }));
+
+    return null;
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -63,7 +85,20 @@ export default class Info extends Component {
           <Picker.Item label="English" value="en" />
           <Picker.Item label="Russian" value="ru" />
           <Picker.Item label="Spanish" value="sp" />
+          <Picker.Item label="German" value="de" />
+          <Picker.Item label="Chinese" value="ch" />
         </Picker>
+
+        <TouchableOpacity
+          style={styles.registrationButtonContainer}
+          onPress={() => this.disconnect()}
+        >
+          <Text style={styles.buttonText}>
+            {this.state.connect
+              ? l10n('components.settings.disconnect', this.state.lan)
+              : l10n('components.settings.connect', this.state.lan)}
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }

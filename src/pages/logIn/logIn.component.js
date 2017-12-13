@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import LoginForm from './components/loginForm.component';
 import l10n from '../../helpers/localization';
-import ChooseLanguageModal from '@/components/Modal/chooseLanguageModal.component';
+import ChooseLanguageModal from '~/components/Modal/chooseLanguageModal.component';
 import styles from './logIn.styled';
 
 export default class LogIn extends Component {
@@ -51,10 +51,7 @@ export default class LogIn extends Component {
         />
 
         <View style={styles.logoContainer}>
-          <Image
-            style={styles.logo}
-            source={require('../../images/octopus.png')}
-          />
+          <Image style={styles.logo} source={require('~/images/octopus.png')} />
           <Text style={styles.title}>
             {l10n('components.login.applicationName', this.state.lan)}
           </Text>
@@ -71,4 +68,3 @@ export default class LogIn extends Component {
     );
   }
 }
-

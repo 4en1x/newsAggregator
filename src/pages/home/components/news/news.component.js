@@ -11,7 +11,7 @@ import Swipeout from 'react-native-swipeout';
 import LikeButton from '../likeButton/likeButton.component';
 import SwipeContainer from '../swipeContainer/swipeContainer.component';
 import styles from './news.styled';
-import l10n from '@/helpers/localization';
+import l10n from '~/helpers/localization';
 
 class News extends Component {
   constructor(props) {

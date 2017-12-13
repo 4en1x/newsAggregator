@@ -9,8 +9,8 @@ import {
   AsyncStorage
 } from 'react-native';
 
-import config from '@/config/config.json';
-import l10n from '@/helpers/localization';
+import config from '~/config/config.json';
+import l10n from '~/helpers/localization';
 import styles from './loginForm.styled';
 
 class loginForm extends Component {

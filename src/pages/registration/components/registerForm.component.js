@@ -8,8 +8,8 @@ import {
   ActivityIndicator
 } from 'react-native';
 
-import config from '@/config/config.json';
-import l10n from '@/helpers/localization';
+import config from '~/config/config.json';
+import l10n from '~/helpers/localization';
 import styles from './registerForm.styled';
 
 export default class Register extends Component {

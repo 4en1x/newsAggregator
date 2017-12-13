@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  Picker,
-  Modal
-} from 'react-native';
+import { View, TouchableOpacity, Text, Picker, Modal } from 'react-native';
 import l10n from '../../helpers/localization';
+import styles from './chooseLanguageModal.styled';
 
-export default class ChooseLanguageModal extends Component {
+class ChooseLanguageModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,22 +21,8 @@ export default class ChooseLanguageModal extends Component {
   render() {
     return (
       <Modal transparent={this.props.transparent} visible={this.props.visible}>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}
-        >
-          <View
-            style={{
-              width: 180,
-              height: 250,
-              backgroundColor: '#fff',
-              borderRadius: 20
-            }}
-          >
+        <View style={styles.container}>
+          <View style={styles.wrapper}>
             <TouchableOpacity
               style={styles.languageContainer}
               onPress={() => this.handleClose()}
@@ -54,13 +34,13 @@ export default class ChooseLanguageModal extends Component {
 
             <Picker
               selectedValue={this.props.lan}
-              onValueChange={(itemValue, itemIndex) =>
-                this.handleLangChange(itemValue)
-              }
+              onValueChange={itemValue => this.handleLangChange(itemValue)}
             >
               <Picker.Item label="English" value="en" />
               <Picker.Item label="Russian" value="ru" />
               <Picker.Item label="Spanish" value="sp" />
+              <Picker.Item label="German" value="de" />
+              <Picker.Item label="Chinese" value="ch" />
             </Picker>
           </View>
         </View>
@@ -69,17 +49,4 @@ export default class ChooseLanguageModal extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  languageContainer: {
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-
-  languageButton: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    opacity: 0.9,
-    marginTop: 10,
-    color: '#ff0d23'
-  }
-});
+export default ChooseLanguageModal;
